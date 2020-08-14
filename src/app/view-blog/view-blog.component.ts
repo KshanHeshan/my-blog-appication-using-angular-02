@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Blog } from '../model/blog';
+import { BlogService } from '../service/blog.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-blog',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewBlogComponent implements OnInit {
 
-  constructor() { }
+  blogPost: Blog;
+
+  constructor( private activatedRouters: ActivatedRoute, private BlogService: BlogService) {}
 
   ngOnInit(): void {
+
+    const blog_post_id = +this.activatedRouters.snapshot.paramMap.get('id');
+    this.blogPost = this.BlogService.retrieveA_blog(blog_post_id);
+    console.log(this.blogPost)
+
   }
 
 }

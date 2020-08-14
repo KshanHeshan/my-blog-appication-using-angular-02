@@ -1,1 +1,18 @@
-<p>view-blog works!</p>
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <p>view-blog works!</p>
+    </div>
+    <!--using ? operator fixed the issue-->
+    <div class="">
+        <h1>{{ blogPost?.title }}</h1>
+    </div>
+    <hr>
+    <div class="">
+        <span> {{ blogPost?.date | date }} </span>
+    </div>
+    <hr>
+    <hr>
+    <div class="">
+        <p>{{ blogPost?.description}} </p>
+    </div>
+</div>

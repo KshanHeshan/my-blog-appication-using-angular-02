@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BlogService } from '../service/blog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blogs',
@@ -7,22 +8,31 @@ import { BlogService } from '../service/blog.service';
   styleUrls: ['./blogs.component.scss'],
 })
 export class BlogsComponent implements OnInit {
-  blogs = null;
+  // blogs = null;
   
-  constructor(private blogsService: BlogService) {}
+  constructor(public blogServices: BlogService, private router: Router) {}
 
   ngOnInit(): void {
-    this.showAllblogs()
+    // this.showAllblogs()
   }
 
-  showAllblogs(){
-    this.blogs = this.blogsService.fetchAllblogs();
+  // showAllblogs(){
+  //   this.blogs = this.blogsService.fetchAllblogs();
+  // }
+
+  // blogDeleteEvent($deleteEvent){
+  //   let blog=$deleteEvent
+  //   if(confirm('Are you sure that you want to delete this blog?')){
+  //     this.blogs=this.blogsService.removeBlog(blog.id)
+  //   }
+  // }
+
+  onClickBlogPostCreate() {
+    this.router.navigate(['create'])
   }
 
-  blogDeleteEvent($deleteEvent){
-    let blog=$deleteEvent
-    if(confirm('Are you sure that you want to delete this blog?')){
-      this.blogs=this.blogsService.removeBlog(blog.id)
-    }
+  onClickBlogPost(post_id: number) {
+    this.router.navigate(['view', post_id])
   }
+  
 }

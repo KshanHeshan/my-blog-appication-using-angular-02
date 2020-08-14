@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BlogService } from 'src/app/service/blog.service';
 import { Blog } from 'src/app/model/blog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog',
@@ -14,12 +15,12 @@ export class BlogComponent implements OnInit {
 
   rateCount:number;
 
-  constructor(private blogService:BlogService) {}
+  constructor(public blogService:BlogService, private router: Router) {}
   
   ngOnInit(): void {}
 
-  deletePost(blog){
-    this.valuechange.emit(blog)
+  deletePost(blog: Blog){
+    this.blogService.removeBlog(blog.id)
   }
 
   StarRating(rate:any,starData:any){  
@@ -32,6 +33,11 @@ export class BlogComponent implements OnInit {
         rate.starButtons[x]=true;  
       }  
     }  
-  }  
+  }
+  
+  updatePost(blog: Blog) {
+      this.router.navigate(['edit', blog.id]);
+  }
+  
 }
 
