@@ -1,0 +1,18 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body text-center">
+      <h5 class="card-title"><b>{{ blog.title }}</b></h5>
+      <span>Date : {{ blog.date | date }} </span>
+      <br/>
+      <span>
+        Rate : <a *ngFor="let item of blog.starButtons; let x=index " (click)="StarRating(blog,x)">  
+          <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>  
+        </a>
+      </span>
+      <hr/>
+      <p class="card-text text-justify">{{ blog.description }}</p>
+      <hr/>
+      <button class="btn btn-warning" (click)="deletePost(blog)"><i class="fa fa-edit"></i>&nbsp;Edit Blog</button>&nbsp;
+      <button class="btn btn-danger" (click)="deletePost(blog)"><i class="fa fa-trash"></i>&nbsp; Delete Blog</button>
+    </div>
+    
+</div>
